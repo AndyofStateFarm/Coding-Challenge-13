@@ -3,6 +3,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Loading
     let Loading = document.getElementById('Loading');
+    Loading.style.display = `block`
+    
     let countlength;
     let count = 0;
 
@@ -12,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const request = await fetch(`https://course-api.com/react-store-products`).then((response)=>{
             return response.json();
         }).then((data)=>{
+            Loading.style.display = `none`
             console.log(data);
             countlength = data.length;
             console.log(countlength);
