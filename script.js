@@ -1,13 +1,20 @@
 // U08282838
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Loading
+    let Loading = document.getElementById('Loading');
+    let countlength;
     let count = 0;
-    function call(count)
+
+    // Create function to display product data
+    async function call(count)
     {
-        const request = fetch(`https://course-api.com/react-store-products`).then((response)=>{
+        const request = await fetch(`https://course-api.com/react-store-products`).then((response)=>{
             return response.json();
         }).then((data)=>{
             console.log(data);
+            countlength = data.length;
+            console.log(countlength);
             document.querySelector("#productName").textContent = `${data[count].name}`;
             document.querySelector("#productPicture").src = `${data[count].image}`;
             document.querySelector("#productPrice").textContent = `$${data[count].price}`;
@@ -24,14 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Previous button event listener
         document.getElementById('previousbtn').addEventListener('click', ()=>{
-            count = (count > 0) ? --count : 21;
+            count = (count > 0) ? --count : countlength-1;
             console.log(count);
             call(count)
         })
 
         //Next button event listener
         document.getElementById('nextbtn').addEventListener('click', ()=>{
-            count = (count < 21) ? ++count : 0;
+            count = (count < countlength-1) ? ++count : 0;
             console.log(count);
             call(count)
         })
