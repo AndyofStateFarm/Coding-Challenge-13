@@ -22,5 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         call(count)
 
+        //Previous button event listener
+        document.getElementById('previousbtn').addEventListener('click', ()=>{
+            count = (count > 0) ? --count : 21;
+            console.log(count);
+            call(count)
+        })
 
+        //Next button event listener
+        document.getElementById('nextbtn').addEventListener('click', ()=>{
+            count = (count < 21) ? ++count : 0;
+            console.log(count);
+            call(count)
+        })
     })
